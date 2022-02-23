@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block customCSS %}{% endblock customCSS %}
+
+{% block title %}update user{% endblock title %}
+
+{% block contents %}
+<div>
+    <h1>update user</h1>
+
+    <div>
+        <form action="{{ url_for('update_user', id=user['id']) }}" method="post">
+            <label for="user">
+                <input type="text" name="user" id="user" placeholder="add user..." value="{{ user['user'] }}">
+            </label>
+            <input type="submit" value="update user">
+        </form>
+    </div>
+</div>
+{% endblock contents %}
+
+{% block customScripts %}{% endblock customScripts %}

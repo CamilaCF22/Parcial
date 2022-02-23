@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block customCSS %}{% endblock customCSS %}
+
+{% block title %}show status{% endblock title %}
+
+{% block contents %}
+
+<div>
+    <h1>show status</h1>
+
+    <div>
+        <form action="{{ url_for('new_status') }}" method="post">
+            <label for="name">
+                <input type="text" name="name" id="name" placeholder="add name...">
+            </label>
+            <input type="submit" value="add status">
+        </form>
+    </div>
+
+    <div>
+        <table id="statusList">
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+            </tr>
+            {% for status in statusList %}
+            <tr>
+                <td>{{ status["id"] }}</td>
+                <td>{{ status["name"] }}</td>
+                <td><a href="{{ url_for('update_status', id=status['id']) }}">update</a></td>
+                <td><a href="{{ url_for('delete_status', id=status['id']) }}">delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock contents %}
+
+{% block customScripts %}{% endblock customScripts %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block customCSS %}{% endblock customCSS %}
+
+{% block title %}show tasks{% endblock title %}
+
+{% block contents %}
+<div>
+    <h1>show tasks</h1>
+    <div>
+        <a href="{{ url_for('new_task', iduser=user) }}">create task</a>
+    </div>
+    <div>
+        <table id="tasks">
+            <tr>
+                <th>Id</th>
+                <th>User</th>
+                <th>Description</th>
+                <th>Status</th>
+            </tr>
+            {% for task in tasks %}
+            <tr>
+                <td>{{ task["id"] }}</td>
+                <td>{{ task["iduser"] }}</td>
+                <td>{{ task["description"] }}</td>
+                <td>{{ task["idstatus"] }}</td>
+                <td><a href="{{ url_for('update_task', iduser=user, id=task['id']) }}">update</a></td>
+                <td><a href="{{ url_for('delete_task', iduser=user, id=task['id']) }}">delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock contents %}
+
+{% block customScripts %}{% endblock customScripts %}

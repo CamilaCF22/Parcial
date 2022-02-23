@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block customCSS %}{% endblock customCSS %}
+
+{% block title %}show users{% endblock title %}
+
+{% block contents %}
+
+<div>
+    <h1>show users</h1>
+
+    <div>
+        <form action="{{ url_for('new_user') }}" method="post">
+            <label for="user">
+                <input type="text" name="user" id="user" placeholder="add user...">
+            </label>
+            <input type="submit" value="add user">
+        </form>
+    </div>
+
+    <div>
+        <table id="users">
+            <tr>
+                <th>Id</th>
+                <th>User</th>
+            </tr>
+            {% for user in users %}
+            <tr>
+                <td>{{ user["id"] }}</td>
+                <td>{{ user["user"] }}</td>
+                <td><a href="{{ url_for('update_user', id=user['id']) }}">update</a></td>
+                <td><a href="{{ url_for('delete_user', id=user['id']) }}">delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock contents %}
+
+{% block customScripts %}{% endblock customScripts %}

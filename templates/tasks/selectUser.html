@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block customCSS %}{% endblock customCSS %}
+
+{% block title %}tasks - select user{% endblock title %}
+
+{% block contents %}
+<div>
+    <h1>tasks - select user</h1>
+    <div>
+        <form action="{{ url_for('show_tasks', iduser=0) }}" method="post">
+            <label for="user">user:
+                <select name="user" id="user" title="select a user">
+                    {% for user in users %}
+                    <option value="{{ user['id'] }}">{{ user['user'] }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <input type="submit" value="select user">
+        </form>
+    </div>
+</div>
+{% endblock contents %}
+
+{% block customScripts %}{% endblock customScripts %}

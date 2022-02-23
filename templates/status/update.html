@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block customCSS %}{% endblock customCSS %}
+
+{% block title %}update status{% endblock title %}
+
+{% block contents %}
+<div>
+    <h1>update status</h1>
+
+    <div>
+        <form action="{{ url_for('update_status', id=status['id']) }}" method="post">
+            <label for="name">
+                <input type="text" name="name" id="name" placeholder="add name..." value="{{ status['name'] }}">
+            </label>
+            <input type="submit" value="update status">
+        </form>
+    </div>
+</div>
+{% endblock contents %}
+
+{% block customScripts %}{% endblock customScripts %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block customCSS %}{% endblock customCSS %}
+
+{% block title %}update task{% endblock title %}
+
+{% block contents %}
+<div>
+    <h1>update task</h1>
+    <div>
+        <form action="{{ url_for('update_task', iduser=iduser, id=task['id']) }}" method="post">
+            <label for="description">
+                <input type="text" name="description" id="description" placeholder="add description..."
+                    value="{{ task['description'] }}">
+            </label>
+            <label for="status">
+                <select name="status" id="status" title="select status">
+                    {% for status in statusList %}
+                    {% if status['id'] == task['idstatus'] %}
+                    <option value="{{ status['id'] }}" selected>{{ status['name'] }}</option>
+                    {% else %}
+                    <option value="{{ status['id'] }}">{{ status['name'] }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+            </label>
+            <input type="submit" value="update task">
+        </form>
+    </div>
+</div>
+{% endblock contents %}
+
+{% block customScripts %}{% endblock customScripts %}

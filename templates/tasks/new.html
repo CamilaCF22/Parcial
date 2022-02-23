@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block customCSS %}{% endblock customCSS %}
+
+{% block title %}new task{% endblock title %}
+
+{% block contents %}
+<div>
+    <h1>new task</h1>
+    <div>
+        <form action="{{ url_for('new_task', iduser=iduser) }}" method="post">
+            <label for="description">
+                <input type="text" name="description" id="description" placeholder="add description...">
+            </label>
+            <label for="status">
+                <select name="status" id="status" title="select status">
+                    {% for status in statusList %}
+                    <option value="{{ status['id'] }}">{{ status['name'] }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <input type="hidden" name="user" value="iduser">
+            <input type="submit" value="create new task">
+        </form>
+    </div>
+</div>
+{% endblock contents %}
+
+{% block customScripts %}{% endblock customScripts %}

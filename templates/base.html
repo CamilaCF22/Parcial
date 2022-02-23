@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block customCSS %}{% endblock customCSS %}
+    <title>{% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+
+    <!-- top nav bar -->
+    <div class="topnav">
+        <a class="active" href="{{ url_for('home') }}">Home</a>
+        <a href="{{ url_for('task_select_user') }}">manage tasks</a>
+        <a href="{{ url_for('show_users') }}">manage users</a>
+        <a href="{{ url_for('show_status') }}">manage status</a>
+        <a href="#about">About</a>
+    </div>
+    <!-- top nav bar -->
+
+    {% block contents %}{% endblock contents %}
+    <br>
+    {% block customScripts %}{% endblock customScripts %}
+</body>
+
+</html>
