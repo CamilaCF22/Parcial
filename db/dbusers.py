@@ -35,7 +35,7 @@ def updateUser(user: User):
     connection = createConnectionDB()
     with connection:
         with connection.cursor() as cursor:
-            sql = "UPDATE `specialtodolistdb`.`user` SET `name` = %s WHERE `id` = %s;"
+            sql = "UPDATE `specialtodolistdb`.`users` SET `name` = %s WHERE `id` = %s;"
             cursor.execute(sql, (person.name, person.id))
         connection.commit()
 
@@ -45,6 +45,6 @@ def deleteUser(id: int):
     connection = createConnectionDB()
     with connection:
         with connection.cursor() as cursor:
-            sql = "DELETE FROM `specialtodolistdb`.`user` WHERE id=%s;"
+            sql = "DELETE FROM `specialtodolistdb`.`users` WHERE id=%s;"
             cursor.execute(sql, id)
         connection.commit()
