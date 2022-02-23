@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from db.dbusers import selectAllUsers, insertNewUser, selectUserById, updateUser, deleteUser
 from db.dbstatus import selectAllStatus, insertNewStatus, selectStatusById, updateStatus, deleteStatus
-from db.dbtasks import selectAllTasksByUser, insertNewTask, selectTaskById, updateTask, deleteTask
+from db.dbtasks import selectAllTasks, selectAllTasksByUser, insertNewTask, selectTaskById, updateTask, deleteTask
 from models.user import User
 from models.status import Status
 from models.task import Task
@@ -20,69 +20,121 @@ def about():
     
 @app.route("/users/show")
 def show_users():
-    personslist=selectAllUsers()
-    return render_template("users", personslist=personslist)
+    users=selectAllUsers()
+    return render_template("show.html", users=users)
 
 
 @app.route("/users/new", methods=["POST"])
 def new_user():
-    new_user=insertNewUser(user)
-    return render_template("newuser",new_user=new_user)
+    if request.method == "GET":
+        return render_template("show.html")
+    elif request.method == "POST":
+        name = request.form.get("name")
+        insertNewUser(user)
+        return redirect(url_for("home"))
+    else:
+        return redirect(url_for("home"))
+
 
 
 @app.route("/users/update/<int:id>", methods=["GET", "POST"])
 def update_user(id):
-    return "update user"
+    if request.method == "GET":
+        user = selectPersonBy(id)
+        return render_template("update.html", user=user)
+    elif request.method == "POST":
+        name = request.form.get("name")
+        updateUser(user)
+        return redirect(url_for("home"))
+    else:
+        return redirect(url_for("home"))
 
 
 @app.route("/users/delete/<int:id>")
 def delete_user(id):
-    return "delete user"
+    deleteUser(id)
+    return redirect(url_for("home"))
 
 
 @app.route("/status/show")
 def show_status():
-    return "show status"
+    statusList=selectAllStatus()
+    return render_template("show.html", statusList=statusList)
 
 
 @app.route("/status/new", methods=["POST"])
 def new_status():
-    return "new status"
+    if request.method == "GET":
+        return render_template("show.html")
+    elif request.method == "POST":
+        name = request.form.get("name")
+        insertNewStatus(status)
+        return redirect(url_for("home"))
+    else:
+        return redirect(url_for("home"))
+
 
 
 @app.route("/status/update/<int:id>", methods=["GET", "POST"])
 def update_status(id):
-    return "update status"
+    if request.method == "GET":
+        status = selectStatusById(id)
+        return render_template("update.html", status=status)
+    elif request.method == "POST":
+        name = request.form.get("name")
+        updateStatus(status)
+        return redirect(url_for("home"))
+    else:
+        return redirect(url_for("home"))
 
 
 @app.route("/status/delete/<int:id>")
 def delete_status(id):
-    return "delete status"
+    deleteStatus(id)
+    return redirect(url_for("home"))
 
 
 @app.route("/tasks/user")
 def task_select_user():
-    return "task select user"
+    select=selectAllTasksByUser(iduser)
+    return render_template("selectUser.html", select=select)
 
 
 @app.route("/tasks/show/<int:iduser>", methods=["GET", "POST"])
 def show_tasks(iduser):
-    return "show tasks"
+    taks=selectAllTasks()
+    return render_template("show.html", tasks=tasks)
 
 
 @app.route("/tasks/new/<int:iduser>", methods=["GET", "POST"])
 def new_task(iduser):
-    return "new task"
-
+    if request.method == "GET":
+        return render_template("new.html")
+    elif request.method == "POST":
+        description = request.form.get("description")
+        status = request.form.get("status")
+        return redirect(url_for("home"))
+    else:
+        return redirect(url_for("home"))
 
 @app.route("/tasks/update/<int:iduser>/<int:id>", methods=["GET", "POST"])
 def update_task(iduser, id):
-    return "update task"
+    if request.method == "GET":
+        task = selectAllTasksByUser(iduser)
+        return render_template("update.html", task=task)
+    elif request.method == "POST":
+        description = request.form.get("description")
+        status = request.form.get("status")
+        updateTask(task)
+        return redirect(url_for("home"))
+    else:
+        return redirect(url_for("home"))
 
 
 @app.route("/tasks/delete/<int:iduser>/<int:id>")
 def delete_task(iduser, id):
-    return "delete task"
+    deleteTask(id)
+    return redirect(url_for("home"))
 
 
 if __name__ == "__main__":
