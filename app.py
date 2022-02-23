@@ -11,9 +11,13 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "home"
+    return render_template("home.html")
+    return redirect (url_for("home"))
 
-
+@app.route("/about")
+def about():
+    return render_template("about.html")
+    
 @app.route("/users/show")
 def show_users():
     return "show users"

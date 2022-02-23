@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Magic Todolist App</title>
+</head>
+<body>
+    <ul>
+       <a class= "home" href="{{ url_for('home') }}">Home</a>
+       <a class= "managetask" href="#Managetask">Manage Task</a>
+       <a class= "manageuser" href="#Manageusers">Manage users</a>
+       <a class= "managestatus" href="#Managestatus">Manage status</a>
+       <a class= "about" href="{{ url_for('about')">About</a>
+
+    </ul>
+    <p>Bienvenido/a a tu To Do List, ¿cansado/a de olvidar tu actividades? Ya no más!</p>
+    <p>En la barra de menú, tendrás a tu disposción diferentes herramientas para crear usuarios, tareas y cambiar o eliminar el estado de ellas</p>
+    <p>Te invitamos a visitar la sección About, donde podrás conocer más de nosotros!</p>
+</body>
+</html>
