@@ -9,9 +9,9 @@
 <body>
     <ul>
        <a class= "home" href="{{ url_for('home') }}">Home</a>
-       <a class= "managetask" href="#Managetask">Manage Task</a>
-       <a class= "manageuser" href="{{ url_for('new_user') }}">Manage users</a>
-       <a class= "managestatus" href="#Managestatus">Manage status</a>
+       <a class= "managetask" href="{{ url_for('task_select_user') }}">Manage Task</a>
+       <a class= "manageuser" href="{{ url_for('show_users') }}">Manage users</a>
+       <a class= "managestatus" href="{{ url_for('new_status') }}">Manage status</a>
        <a class= "about" href="{{ url_for('about')">About</a>
 
     </ul>
