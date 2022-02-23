@@ -20,7 +20,8 @@ def about():
     
 @app.route("/users/show")
 def show_users():
-    return "show users"
+    personlist=selectAllUsers()
+    return render_template("users")
 
 
 @app.route("/users/new", methods=["POST"])
