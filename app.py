@@ -20,13 +20,14 @@ def about():
     
 @app.route("/users/show")
 def show_users():
-    personlist=selectAllUsers()
-    return render_template("users")
+    personslist=selectAllUsers()
+    return render_template("users", personslist=personslist)
 
 
 @app.route("/users/new", methods=["POST"])
 def new_user():
-    return "new user"
+    new_user=insertNewUser(user)
+    return render_template("newuser",new_user=new_user)
 
 
 @app.route("/users/update/<int:id>", methods=["GET", "POST"])
